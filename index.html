@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Dad</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: 'Arial', sans-serif;
+            height: 100%;
+            overflow-x: hidden;
+            background-color: #0b0f1b;
+            color: white;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            z-index: 9999;
+        }
+
+        .loading-text {
+            font-size: 50px;
+            color: gold;
+            animation: loadingAnimation 3s infinite;
+        }
+
+        @keyframes loadingAnimation {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Countdown Screen */
+        .countdown-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: gold;
+            font-size: 100px;
+            font-weight: bold;
+            z-index: 9999;
+        }
+
+        /* Main Content */
+        body {
+            background: linear-gradient(135deg, #1f223e, #383f85);
+            background-attachment: fixed;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 40px 10px 20px;
+            background: rgba(0, 0, 0, 0.5);
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Cinematic Title */
+        .cinematic-title {
+            text-align: center;
+            font-size: 48px;
+            margin: 50px auto;
+            letter-spacing: 3px;
+            color: #f8e7d1;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+            animation: fadeIn 3s ease-in-out, zoomIn 2s ease-out;
+        }
+
+        /* Carousel Container */
+        .carousel-container {
+            position: relative;
+            width: 80%;
+            margin: 30px auto;
+            max-width: 700px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel-container img {
+            width: 100%;
+            display: none;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .carousel-container img.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Watching Effect */
+        .scroll-section {
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            animation: slideIn 2s ease-out;
+        }
+
+        .scroll-section h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #f7d1ba;
+        }
+
+        .scroll-section p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #ddd;
+        }
+
+        /* Play Button */
+        .btn-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 18px;
+            color: white;
+            background-color: #ff8c42;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background-color: #e27635;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ddd;
+            letter-spacing: 1px;
+        }
+
+        /* Full Screen Message */
+        .full-screen-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: gold;
+            font-size: 45px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 9999;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .cinematic-title {
+                font-size: 30px;
+            }
+
+            .scroll-section h2 {
+                font-size: 22px;
+            }
+
+            .scroll-section p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loading-text">Loading...</div>
+    </div>
+
+    <!-- Countdown Screen -->
+    <div class="countdown-screen">
+        <div id="countdown"></div>
+    </div>
+
+    <!-- Cinematic Header -->
+    <header>🎂🎉 Happy Birthday Dad 🎉🎂</header>
+
+    <!-- Cinematic Title -->
+    <div class="cinematic-title">A Year Full of Precious Moments</div>
+
+    <!-- Carousel -->
+    <div class="carousel-container">
+        <img src="birthday_image1.jpeg" alt="Memory 1" class="active">
+        <img src="birthday_image2.jpeg" alt="Memory 2">
+        <img src="birthday_image3.jpeg" alt="Memory 3">
+        <img src="birthday_image4.jpeg" alt="Memory 4">
+        <img src="birthday_image5.jpeg" alt="Memory 5">
+        <img src="birthday_image6.jpeg" alt="Memory 6">
+        <img src="birthday_image7.jpeg" alt="Memory 7">
+        <img src="birthday_image8.jpeg" alt="Memory 8">
+        <img src="birthday_image9.jpeg" alt="Memory 9">
+        <img src="birthday_image10.jpeg" alt="Memory 10">
+        <img src="birthday_image11.jpeg" alt="Memory 11">
+        <img src="birthday_image12.jpeg" alt="Memory 12">
+        <img src="birthday_image13.jpeg" alt="Memory 13">
+        <img src="birthday_image14.jpeg" alt="Memory 14">
+        <img src="birthday_image15.jpeg" alt="Memory 15">
+        <img src="birthday_image16.jpeg" alt="Memory 16">
+        <img src="birthday_image17.jpeg" alt="Memory 17">
+        <img src="birthday_image18.jpeg" alt="Memory 18">
+        <img src="birthday_image19.jpeg" alt="Memory 19">
+        <img src="birthday_image20.jpeg" alt="Memory 20">
+    </div>
+
+    <!-- Message Sections -->
+    <div class="scroll-section">
+        <h2>🎈 A Beautiful Journey Together</h2>
+        <p>Every picture tells a story. From smiles to laughter, these moments remind us of the joy we shared throughout the year.</p>
+    </div>
+
+    <div class="scroll-section">
+        <h2>✨ Cherished Memories</h2>
+        <p>From small victories to big celebrations, life has been brighter because of you, Dad. Here's to many more happy years!</p>
+    </div>
+
+    <!-- Play Button -->
+    <div class="btn-container">
+        <button id="playPause">Play The Music 🎵</button>
+    </div>
+
+    <!-- Footer -->
+    <footer>Made with ❤️ and Memories</footer>
+
+    <!-- Audio -->
+    <audio id="audio" loop src="https://raw.githubusercontent.com/GemDev910/Happy-Birthday-2024/main/Audio.mp3"></audio>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loadingScreen = document.querySelector('.loading-screen');
+            const countdownScreen = document.querySelector('.countdown-screen');
+            const countdownElement = document.getElementById('countdown');
+            const images = document.querySelectorAll('.carousel-container img');
+            const audio = document.getElementById('audio');
+            const playPauseButton = document.getElementById('playPause');
+            let currentIndex = 0;
+            let isPlaying = false;
+
+            // Countdown Logic
+            let countdown = 3;
+            const countdownInterval = setInterval(() => {
+                countdownElement.textContent = countdown;
+                countdown--;
+                if (countdown < 0) {
+                    clearInterval(countdownInterval);
+                    countdownScreen.style.display = 'none';
+                    loadingScreen.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            }, 1000);
+
+            // Image Carousel Logic
+            function nextImage() {
+                images[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].classList.add('active');
+            }
+
+            const carouselInterval = setInterval(nextImage, 4000); // Change image every 4 seconds
+
+            // Play/Pause Music
+            playPauseButton.addEventListener('click', function () {
+                if (isPlaying) {
+                    audio.pause();
+                    playPauseButton.textContent = 'Play The Music 🎵';
+                } else {
+                    audio.play();
+                    playPauseButton.textContent = 'Pause The Music 🎶';
+                }
+                isPlaying = !isPlaying;
+            });
+
+            // Display Full Screen Message after last image
+            setTimeout(() => {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('full-screen-message');
+                messageDiv.textContent = 'Thank you, Dad! We love you!';
+                document.body.appendChild(messageDiv);
+                setTimeout(() => {
+                    messageDiv.style.opacity = 0;
+                    setTimeout(() => messageDiv.remove(), 2000);
+                }, 5000);
+            }, 20000); // Show message after 20 seconds
+
+        });
+    </script>
+</body>
+</html>
